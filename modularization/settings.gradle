@@ -1,0 +1,2 @@
+include ':app', ':commons', ':module1', ':module2'
+rootProject.name='modularization'

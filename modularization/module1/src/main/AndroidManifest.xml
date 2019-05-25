@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.jiying.demo.modularization.module1" >
+
+    <application>
+        <activity android:name=".Module1Activity1" />
+    </application>
+</manifest>
