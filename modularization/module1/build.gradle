@@ -1,9 +1,14 @@
-apply plugin: 'com.android.library'
+boolean runAsApp() {
+    return runModuleAsApp.toBoolean()
+}
+
+if (runAsApp())
+    apply plugin: 'com.android.application'
+else
+    apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
-
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
@@ -12,15 +17,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
-    }
 
+        if (runAsApp())
+            applicationId "org.jiying.demo.modularization.module1"
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    sourceSets {
+        main {
+            if (runAsApp())
+                manifest.srcFile 'src/main/runAsApp/AndroidManifest.xml'
+        }
+    }
 }
 
 dependencies {

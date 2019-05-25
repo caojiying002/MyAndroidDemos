@@ -20,7 +20,9 @@ android {
 
 dependencies {
     implementation project(path: ':commons')
-    implementation project(path: ':module1')
+    if (!runModuleAsApp.toBoolean()) {
+        implementation project(path: ':module1')
+    }
     implementation project(path: ':module2')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
